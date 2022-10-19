@@ -12,7 +12,7 @@ export default function Home({ products }) {
       {/* Header */}
       <Header />
 
-      <main className="max-w-screen-xl border mx-auto">
+      <main className="max-w-screen-xl mx-auto">
         {/* Banner */}
         <Banner />
 

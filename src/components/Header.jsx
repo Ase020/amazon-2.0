@@ -77,7 +77,7 @@ const Header = () => {
         </p>
 
         {/* SearchBar */}
-        <div className="bg-yellow-400 hover:bg-yellow-500 sm:hidden flex items-center h-8 rounded-md w-80 cursor-pointer text-gray-500">
+        <div className="bg-yellow-400 hover:bg-yellow-500 sm:hidden flex items-center h-8 rounded-md w-80 xs:max-w-[100px] cursor-pointer text-gray-500">
           <input
             placeholder="Search items"
             type="text"
@@ -87,7 +87,7 @@ const Header = () => {
         </div>
 
         {ham && (
-          <div className="absolute bg-amazon_blue lg:hidden flex flex-col top-10 left-0 p-8 space-y-4 rounded-b-lg z-10">
+          <div className="absolute bg-amazon_blue lg:hidden flex flex-col top-10 left-0 p-8 space-y-4 rounded-b-lg z-40">
             <p className="inline-flex lg:hidden link">Prime Video</p>
             <p className="inline-flex lg:hidden link">Amazon Business</p>
             <p className="inline-flex lg:hidden link">Today's Deals</p>
