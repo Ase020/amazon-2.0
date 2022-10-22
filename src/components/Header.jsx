@@ -7,13 +7,18 @@ import {
   ShoppingCartIcon,
   XIcon,
 } from "@heroicons/react/outline";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
+import { selectItems } from "../slices/basketSlice";
 
 const Header = () => {
   const router = useRouter();
   const [ham, setHam] = useState(false);
+  const { data: session } = useSession();
+  const items = useSelector(selectItems);
 
   return (
-    <header>
+    <header className="sticky top-0 z-50">
       {/* Top navbar */}
       <div className="flex items-center bg-amazon_blue px-1 py-2 flex-grow">
         {/* Logo */}
@@ -41,8 +46,12 @@ const Header = () => {
 
         {/* Right */}
         <div className="flex items-center text-xs space-x-6 mx-6 text-white whitespace-nowrap">
-          <div className="link">
-            <p>Hello Felix Olali</p>
+          <div
+            onClick={!session ? signIn : signOut}
+            className="link capitalize">
+            <p className="capitalize">
+              {session ? `Hello, ${session.user.name}` : "Sign in"}
+            </p>
             <span className="font-extrabold md:text-sm">Account & Lists</span>
           </div>
 
@@ -51,9 +60,11 @@ const Header = () => {
             <span className="font-extrabold md:text-sm">& Orders</span>
           </div>
 
-          <div className="relative flex items-center link">
-            <span className="absolute top-0 right-0 md:right-10 bg-yellow-400 h-4 w-4 rounded-full  text-center text-gray-800 font-bold">
-              4
+          <div
+            className="relative flex items-center link"
+            onClick={() => router.push("/checkout")}>
+            <span className="absolute top-0 right-0 md:right-10 bg-yellow-400 h-4 w-4 rounded-full  text-center text-gray-800 font-bold ">
+              {items.length}
             </span>
             <ShoppingCartIcon height={40} className="" />
             <span className="hidden md:inline font-extrabold md:text-sm mt-2">
